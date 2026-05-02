@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Juego Interactivo - Espejo Social</title>
+  <style>
+    body {
+      font-family: 'Verdana', sans-serif;
+      background: linear-gradient(135deg, #e8f5e9, #ffffff);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      background-color: #2e7d32;
+      padding: 15px;
+      text-align: center;
+    }
+    header img {
+      max-height: 80px;
+    }
+    .escenario {
+      max-width: 700px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    .escenario h3 {
+      color: #1b5e20;
+    }
+    button {
+      margin: 8px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .btn-verificar { background-color: #2e7d32; color: #fff; }
+    .btn-compartir { background-color: #c62828; color: #fff; }
+    .btn-ignorar { background-color: #9e9e9e; color: #fff; }
+    .btn-siguiente { background-color: #1b5e20; color: #fff; margin-top: 15px; }
+    #feedback {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #2e7d32;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f1f8e9;
+    }
+    footer img {
+      max-height: 60px;
+    }
+    .share-buttons a {
+      margin: 8px;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: #fff;
+    }
+    .whatsapp { background-color: #25D366; }
+    .facebook { background-color: #1877F2; }
+    .tiktok { background-color: #000; }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="UTEL Logo">
+</header>
+
+<div id="escenario1" class="escenario">
+  <h3>Escenario 1: Estafa de migración a Canadá</h3>
+  <p>En redes circula un video que promete trabajo y casa inmediata si migras a Canadá. ¿Qué haces?</p>
+  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: riesgo de difundir fraude.')">Compartirlo</button>
+  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: verificar en fuentes oficiales protege tu seguridad.')">Verificar en fuentes oficiales</button>
+  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: reduces el riesgo, pero no ayudas a otros a evitarlo.')">Ignorarlo</button>
+  <div id="feedback"></div>
+  <button class="btn-siguiente" onclick="siguienteEscenario(2)">➡️ Siguiente</button>
+</div>
+
+<div id="escenario2" class="escenario" style="display:none;">
+  <h3>Escenario 2: Meme político sobre Morena</h3>
+  <p>Se viraliza la noticia de que un diputado de Morena propone cárcel por crear o difundir memes. ¿Qué haces?</p>
+  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: difundir sin contexto puede generar miedo.')">Compartirlo como burla</button>
+  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: confirmar la iniciativa en fuentes oficiales te permite opinar con fundamento.')">Investigar si es real</button>
+  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: evitas viralizarlo, pero pierdes oportunidad de reflexionar.')">Ignorarlo</button>
+  <div id="feedback"></div>
+  <button class="btn-siguiente" onclick="siguienteEscenario(3)">➡️ Siguiente</button>
+</div>
+
+<div id="escenario3" class="escenario" style="display:none;">
+  <h3>Escenario 3: Meme sobre Claudia Sheinbaum y el ahorro de luz</h3>
+  <p>Circula un meme sobre un comentario de la presidenta acerca de apagar las luces o el uso del calentador solar. ¿Qué haces?</p>
+  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: difundir memes sin verificar puede reforzar la desinformación.')">Reír y compartir</button>
+  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: verificar declaraciones oficiales evita que los memes generen desinformación.')">Investigar si realmente lo dijo</button>
+  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: no contribuyes a la viralización, pero tampoco ayudas a otros.')">Ignorarlo</button>
+  <div id="feedback"></div>
+  <button class="btn-siguiente" onclick="mostrarResultados()">📊 Ver resultados</button>
+</div>
+
+<div id="resultados" class="escenario" style="display:none;">
+  <h3>Resultados</h3>
+  <p>Tu forma de reaccionar en redes sociales refleja cómo construimos juntos el <strong>espejo social</strong>.</p>
+  <div class="share-buttons">
+    <a class="whatsapp" href="https://api.whatsapp.com/send?text=Mis resultados del juego sobre redes sociales: ..." target="_blank">Compartir en WhatsApp</a>
+    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=URL_DEL_JUEGO" target="_blank">Compartir en Facebook</a>
+    <a class="tiktok" href="https://www.tiktok.com/" target="_blank">Compartir en TikTok</a>
+  </div>
+</div>
+
+<footer>
+  <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="UTEL Logo">
+</footer>
+
+<script>
+function mostrarFeedback(texto) {
+  document.getElementById("feedback").innerHTML = "<p>" + texto + "</p>";
+}
+function siguienteEscenario(num) {
+  document.querySelectorAll('.escenario').forEach(e => e.style.display = 'none');
+  document.getElementById("escenario"+num).style.display = 'block';
+}
+function mostrarResultados() {
+  document.querySelectorAll('.escenario').forEach(e => e.style.display = 'none');
+  document.getElementById("resultados").style.display = 'block';
+}
+</script>
+
+</body>
+</html>
