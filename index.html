@@ -2,296 +2,255 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Alfabetización Digital · Semana 1 · Utel</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Semana 1 · Detectives de la Verdad · Utel</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;}
-.app{max-width:480px;margin:0 auto;padding:0 0 40px;}
+html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;height:100%;}
+.shell{max-width:420px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;}
 
-/* HEADER */
-.hdr{background:#0f172a;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(255,255,255,.08);}
-.hdr-logo{height:34px;object-fit:contain;filter:brightness(0) invert(1);}
-.hdr-badge{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-size:11px;font-weight:700;padding:4px 11px;border-radius:20px;letter-spacing:.5px;}
+/* TOP BAR */
+.bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#0a0a0f;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;}
+.bar-logo{height:28px;filter:brightness(0) invert(1);}
+.bar-pill{background:linear-gradient(135deg,#6366f1,#a855f7);font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
 
-/* PROGRESS */
-.prog-wrap{padding:14px 16px 0;}
-.prog-label{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:8px;}
-.prog-dots{display:flex;gap:6px;}
-.prog-dot{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.12);transition:background .4s;}
-.prog-dot.done{background:linear-gradient(90deg,#3b82f6,#8b5cf6);}
-.prog-dot.active{background:rgba(99,102,241,.5);}
+/* STEP DOTS */
+.steps{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px 0;flex-shrink:0;}
+.step{width:32px;height:4px;border-radius:2px;background:rgba(255,255,255,.1);transition:all .3s;}
+.step.on{background:linear-gradient(90deg,#6366f1,#a855f7);width:48px;}
+.step.done{background:rgba(99,102,241,.4);}
 
-/* SCENARIO */
-.sc-wrap{padding:14px 16px 0;}
-.sc-card{border-radius:20px;overflow:hidden;background:#1e293b;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+/* CARD */
+.card{margin:10px 12px 0;border-radius:18px;overflow:hidden;background:#13131a;border:1px solid rgba(255,255,255,.07);}
 
 /* IMAGE */
-.sc-img-wrap{position:relative;height:210px;overflow:hidden;}
-.sc-img{width:100%;height:100%;object-fit:cover;display:block;}
-.sc-img-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.3) 55%,transparent 100%);}
-.sc-top-badges{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start;}
-.sc-num{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(15,23,42,.7);backdrop-filter:blur(8px);color:#94a3b8;border:1px solid rgba(255,255,255,.1);}
-.sc-alert{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);}
-.alert-red{background:rgba(220,38,38,.7);color:#fecaca;}
-.alert-orange{background:rgba(234,88,12,.7);color:#fed7aa;}
-.alert-blue{background:rgba(37,99,235,.7);color:#bfdbfe;}
-.sc-title-wrap{position:absolute;bottom:0;left:0;right:0;padding:16px;}
-.sc-title{color:#fff;font-size:18px;font-weight:800;line-height:1.2;margin-bottom:4px;}
-.sc-subtitle{color:#94a3b8;font-size:12px;font-weight:500;}
+.img-box{position:relative;height:170px;overflow:hidden;}
+.img-box img{width:100%;height:100%;object-fit:cover;display:block;}
+.img-fade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,0) 30%,rgba(10,10,15,.98) 100%);}
+.img-tags{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;}
+.tag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.5px;backdrop-filter:blur(6px);}
+.tag-n{background:rgba(10,10,15,.6);color:#94a3b8;border:1px solid rgba(255,255,255,.1);}
+.tag-r{background:rgba(239,68,68,.75);color:#fecaca;}
+.tag-o{background:rgba(249,115,22,.75);color:#fed7aa;}
+.tag-b{background:rgba(99,102,241,.75);color:#c7d2fe;}
+.img-title{position:absolute;bottom:0;left:0;right:0;padding:10px 12px 12px;}
+.img-title h2{font-size:15px;font-weight:800;line-height:1.2;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6);}
 
 /* SITUATION */
-.sc-sit{margin:14px;background:rgba(255,255,255,.04);border-radius:14px;padding:13px;border:1px solid rgba(255,255,255,.07);}
-.sc-sit-label{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#60a5fa;margin-bottom:7px;}
-.sc-sit-text{font-size:13px;color:#cbd5e1;line-height:1.65;}
+.sit{margin:10px 12px;padding:10px 12px;background:rgba(99,102,241,.08);border-radius:12px;border-left:3px solid #6366f1;}
+.sit-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#818cf8;margin-bottom:5px;}
+.sit-txt{font-size:12px;color:#94a3b8;line-height:1.6;}
 
 /* OPTIONS */
-.opts-label{padding:14px 14px 8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#475569;}
-.opts{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px;}
-.opt{width:100%;text-align:left;padding:13px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:#e2e8f0;line-height:1.4;display:flex;align-items:center;gap:11px;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.opts-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#374151;padding:8px 12px 5px;}
+.opts{padding:0 12px 12px;display:flex;flex-direction:column;gap:7px;}
+.opt{width:100%;text-align:left;padding:11px 13px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:#e2e8f0;display:flex;align-items:center;gap:10px;transition:all .15s;-webkit-tap-highlight-color:transparent;line-height:1.35;}
 .opt:active{transform:scale(.97);}
-.opt:hover:not(:disabled){background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);}
+.opt:hover:not(:disabled){background:rgba(255,255,255,.07);}
 .opt:disabled{cursor:default;transform:none;}
-.opt-icon{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
-.opt.correct{background:rgba(22,163,74,.15);border-color:rgba(22,163,74,.5);color:#86efac;}
-.opt.correct .opt-icon{background:rgba(22,163,74,.3);}
-.opt.partial{background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.5);color:#fcd34d;}
-.opt.partial .opt-icon{background:rgba(217,119,6,.3);}
-.opt.wrong{background:rgba(220,38,38,.15);border-color:rgba(220,38,38,.5);color:#fca5a5;}
-.opt.wrong .opt-icon{background:rgba(220,38,38,.3);}
-.opt.dimmed{opacity:.25;}
+.ico{width:30px;height:30px;min-width:30px;border-radius:9px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:14px;}
+.opt.ok{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.4);color:#86efac;}
+.opt.ok .ico{background:rgba(34,197,94,.2);}
+.opt.meh{background:rgba(234,179,8,.1);border-color:rgba(234,179,8,.4);color:#fde047;}
+.opt.meh .ico{background:rgba(234,179,8,.2);}
+.opt.no{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.4);color:#fca5a5;}
+.opt.no .ico{background:rgba(239,68,68,.2);}
+.opt.dim{opacity:.2;}
 
 /* FEEDBACK */
-.feedback{display:none;margin:0 14px 10px;padding:13px 14px;border-radius:14px;font-size:13px;font-weight:600;line-height:1.6;}
-.feedback.correct{background:rgba(22,163,74,.12);color:#86efac;border:1px solid rgba(22,163,74,.3);}
-.feedback.partial{background:rgba(217,119,6,.12);color:#fcd34d;border:1px solid rgba(217,119,6,.3);}
-.feedback.wrong{background:rgba(220,38,38,.12);color:#fca5a5;border:1px solid rgba(220,38,38,.3);}
+.fb{display:none;margin:0 12px 10px;padding:11px 13px;border-radius:12px;font-size:12px;font-weight:600;line-height:1.55;}
+.fb.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac;}
+.fb.meh{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.25);color:#fde047;}
+.fb.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);color:#fca5a5;}
 
-/* NEXT BTN */
-.next-btn{display:none;margin:4px 14px 16px;width:calc(100% - 28px);padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.3px;transition:opacity .15s;-webkit-tap-highlight-color:transparent;}
-.next-btn:active{opacity:.8;}
+/* NEXT */
+.nxt{display:none;margin:0 12px 14px;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;width:calc(100% - 24px);cursor:pointer;letter-spacing:.3px;-webkit-tap-highlight-color:transparent;}
+.nxt:active{opacity:.8;}
 
 /* FINAL */
-.final{display:none;padding:16px;}
-.final-card{background:#1e293b;border-radius:20px;padding:28px 20px;box-shadow:0 8px 32px rgba(0,0,0,.4);text-align:center;border:1px solid rgba(255,255,255,.07);}
-.final-emoji{font-size:60px;margin-bottom:16px;display:block;}
-.final-title{font-size:22px;font-weight:900;color:#f1f5f9;margin-bottom:4px;}
-.final-sub{font-size:13px;color:#64748b;margin-bottom:20px;}
-.score-ring{width:110px;height:110px;margin:0 auto 16px;position:relative;}
-.score-ring svg{transform:rotate(-90deg);}
-.score-ring circle{fill:none;stroke:rgba(255,255,255,.07);stroke-width:9;}
-.score-ring circle.fill{stroke:url(#grad2);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.34,1.56,.64,1);}
-.score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.score-big{font-size:30px;font-weight:900;color:#f1f5f9;line-height:1;}
-.score-label{font-size:11px;color:#64748b;font-weight:600;margin-top:2px;}
-.final-msg{font-size:14px;color:#94a3b8;line-height:1.7;margin:0 0 22px;}
-.stars{font-size:28px;margin-bottom:12px;letter-spacing:4px;}
-.restart-btn{width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent;}
-.restart-btn:active{opacity:.8;}
+.fin{display:none;padding:14px 12px;}
+.fin-card{background:#13131a;border-radius:18px;border:1px solid rgba(255,255,255,.07);padding:24px 18px;text-align:center;}
+.fin-em{font-size:52px;margin-bottom:10px;}
+.fin-h{font-size:20px;font-weight:900;color:#f1f5f9;margin-bottom:3px;}
+.fin-s{font-size:12px;color:#4b5563;margin-bottom:16px;}
+.ring{width:100px;height:100px;margin:0 auto 12px;position:relative;}
+.ring svg{transform:rotate(-90deg);}
+.ring circle{fill:none;stroke:rgba(255,255,255,.06);stroke-width:8;}
+.ring circle.arc{stroke:url(#g);stroke-width:8;stroke-linecap:round;stroke-dasharray:264;stroke-dashoffset:264;transition:stroke-dashoffset .9s cubic-bezier(.34,1.56,.64,1);}
+.ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-big{font-size:26px;font-weight:900;color:#f1f5f9;line-height:1;}
+.ring-lbl{font-size:10px;color:#4b5563;font-weight:600;margin-top:2px;}
+.stars{font-size:24px;margin-bottom:10px;letter-spacing:3px;}
+.fin-msg{font-size:13px;color:#6b7280;line-height:1.65;margin-bottom:18px;}
+.rst{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.rst:active{opacity:.8;}
 
 /* FIRMA */
-.firma{margin:14px 0 0;text-align:center;padding:18px;background:#1e293b;border-radius:20px;border:1px solid rgba(255,255,255,.07);}
-.firma img{height:26px;object-fit:contain;margin-bottom:8px;filter:brightness(0) invert(1);opacity:.5;}
-.firma p{font-size:12px;color:#475569;line-height:1.9;}
-.firma strong{color:#64748b;font-weight:700;}
+.firma{margin:10px 0 20px;text-align:center;padding:14px;background:#13131a;border-radius:18px;border:1px solid rgba(255,255,255,.06);}
+.firma img{height:22px;filter:brightness(0) invert(1);opacity:.4;margin-bottom:6px;}
+.firma p{font-size:11px;color:#374151;line-height:1.8;}
+.firma strong{color:#4b5563;}
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="hdr">
-    <img class="hdr-logo" src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
-    <div class="hdr-badge">SEMANA 1</div>
+<div class="shell">
+  <div class="bar">
+    <img class="bar-logo" src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
+    <span class="bar-pill">SEMANA 1</span>
   </div>
 
-  <div class="prog-wrap" id="prog-wrap">
-    <div class="prog-label">
-      <span id="prog-text">Escenario 1 de 3</span>
-      <span id="prog-pct" style="color:#8b5cf6;font-weight:700;">0%</span>
-    </div>
-    <div class="prog-dots">
-      <div class="prog-dot" id="d0"></div>
-      <div class="prog-dot" id="d1"></div>
-      <div class="prog-dot" id="d2"></div>
-    </div>
+  <div class="steps">
+    <div class="step" id="s0"></div>
+    <div class="step" id="s1"></div>
+    <div class="step" id="s2"></div>
   </div>
 
-  <div id="game-area"></div>
+  <div id="area"></div>
 
-  <div class="final" id="final">
-    <div class="final-card">
-      <span class="final-emoji" id="f-emoji">🎯</span>
-      <div class="final-title">¡Juego completado!</div>
-      <div class="final-sub">Alfabetización Digital · Semana 1</div>
-      <div class="score-ring">
-        <svg width="110" height="110" viewBox="0 0 110 110">
+  <div class="fin" id="fin">
+    <div class="fin-card">
+      <div class="fin-em" id="fem">🎯</div>
+      <div class="fin-h">¡Juego completado!</div>
+      <div class="fin-s">Alfabetización Digital · Semana 1</div>
+      <div class="ring">
+        <svg width="100" height="100" viewBox="0 0 100 100">
           <defs>
-            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color:#3b82f6"/>
-              <stop offset="100%" style="stop-color:#8b5cf6"/>
+            <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#6366f1"/>
+              <stop offset="100%" stop-color="#a855f7"/>
             </linearGradient>
           </defs>
-          <circle cx="55" cy="55" r="46"/>
-          <circle cx="55" cy="55" r="46" class="fill" id="s-circle" stroke-dasharray="289" stroke-dashoffset="289"/>
+          <circle cx="50" cy="50" r="42"/>
+          <circle cx="50" cy="50" r="42" class="arc" id="arc"/>
         </svg>
-        <div class="score-num">
-          <div class="score-big" id="s-num">0/3</div>
-          <div class="score-label">correctas</div>
+        <div class="ring-num">
+          <div class="ring-big" id="rnum">0/3</div>
+          <div class="ring-lbl">correctas</div>
         </div>
       </div>
-      <div class="stars" id="f-stars">⭐</div>
-      <div class="final-msg" id="f-msg"></div>
-      <button class="restart-btn" onclick="restart()">🔄 Intentar de nuevo</button>
+      <div class="stars" id="fstars">⭐</div>
+      <div class="fin-msg" id="fmsg"></div>
+      <button class="rst" onclick="restart()">🔄 Intentar de nuevo</button>
     </div>
     <div class="firma">
-      <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
+      <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel"><br>
       <p><strong>Universidad Utel</strong><br>Docente: Armando Sandoval Maravilla</p>
     </div>
   </div>
 </div>
 
 <script>
-const SC=[
-  {
-    num:"01", alertTxt:"🚨 Estafa", alertCls:"alert-red",
-    title:"Estafa de Migración a Canadá",
-    sub:"Pensamiento crítico en redes",
-    img:"https://i.postimg.cc/3RZJD3hG/estafas.jpg",
-    sit:"En redes sociales circula un video viral con el mensaje "Emigrar fácil y rápido a Canadá" con promesas de trabajo garantizado y casa inmediata.",
-    opts:[
-      {icon:"📤",txt:"Compartir inmediatamente con mis contactos",type:"wrong",fb:"❌ Incorrecto. Difundir sin verificar puede ayudar a que más personas caigan en estafas."},
-      {icon:"🔍",txt:"Verificar en fuentes oficiales (IRCC, Gobierno de Canadá)",type:"correct",fb:"✅ Correcto. Esta es la mejor opción. Fortalece el pensamiento crítico y protege a las personas."},
-      {icon:"🙈",txt:"Ignorarlo",type:"partial",fb:"⚠️ Parcialmente aceptable. No ayudas a difundir el fraude, pero tampoco ayudas a otros a identificar la desinformación."}
-    ]
-  },
-  {
-    num:"02", alertTxt:"⚖️ Político", alertCls:"alert-orange",
-    title:"Ley Anti-Stickers de Morena",
-    sub:"Libertad de expresión digital",
-    img:"https://i.postimg.cc/FRxsJhvL/morena.jpg",
-    sit:"Se viraliza la noticia de que un diputado de Morena propone penas de cárcel por crear o difundir memes, stickers o gifs que dañen la reputación de alguien.",
-    opts:[
-      {icon:"😂",txt:"Compartirlo como burla sin verificar",type:"wrong",fb:"❌ Incorrecto. Difundir sin verificar genera miedo o desinformación, aunque sea en broma."},
-      {icon:"🔍",txt:"Investigar si la iniciativa es real en el sitio oficial del Congreso",type:"correct",fb:"✅ Correcto. Siempre hay que confirmar la información antes de opinar o compartir."},
-      {icon:"🙈",txt:"Ignorarlo",type:"partial",fb:"⚠️ Aceptable, pero no ideal. Evitas propagar la noticia, pero pierdes la oportunidad de reflexionar sobre libertad de expresión."}
-    ]
-  },
-  {
-    num:"03", alertTxt:"💡 Viral", alertCls:"alert-blue",
-    title:"Meme sobre Claudia Sheinbaum",
-    sub:"Verificación de información política",
-    img:"https://i.postimg.cc/ZRLKyJm3/luz.jpg",
-    sit:"Circula un meme sobre un supuesto comentario de la presidenta Claudia Sheinbaum acerca de apagar las luces o usar menos el calentador para ahorrar energía.",
-    opts:[
-      {icon:"😆",txt:"Reír y compartir el meme",type:"wrong",fb:"❌ Incorrecto. Compartir memes sin verificar contribuye a la desinformación política."},
-      {icon:"🔍",txt:"Investigar si realmente lo dijo buscando la declaración completa",type:"correct",fb:"✅ Correcto. Verificar fuentes oficiales evita caer en desinformación."},
-      {icon:"🙈",txt:"Ignorarlo",type:"partial",fb:"⚠️ Aceptable. No contribuyes a viralizarlo, pero tampoco ayudas a otros a distinguir lo verdadero de lo falso."}
-    ]
-  }
+const DATA=[
+  {num:"01",tag:"🚨 Estafa",tc:"tag-r",
+   title:"Estafa de Migración a Canadá",
+   img:"https://i.postimg.cc/3RZJD3hG/estafas.jpg",
+   sit:"En redes sociales circula un video viral con el mensaje \u201cEmigrar fácil y rápido a Canadá\u201d con promesas de trabajo garantizado y casa inmediata.",
+   opts:[
+    {i:"📤",t:"Compartir de inmediato con mis contactos",k:"no",f:"❌ Difundir sin verificar ayuda a que más personas caigan en estafas."},
+    {i:"🔍",t:"Verificar en fuentes oficiales (IRCC, Gobierno de Canadá)",k:"ok",f:"✅ ¡Correcto! Verificar fortalece el pensamiento crítico y protege a las personas."},
+    {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable, pero no ideal. No difundes el fraude, pero tampoco ayudas a otros a identificarlo."}
+  ]},
+  {num:"02",tag:"⚖️ Político",tc:"tag-o",
+   title:"Ley Anti-Stickers de Morena",
+   img:"https://i.postimg.cc/FRxsJhvL/morena.jpg",
+   sit:"Se viraliza que un diputado de Morena propone penas de cárcel por crear o difundir memes, stickers o gifs que dañen la reputación de alguien.",
+   opts:[
+    {i:"😂",t:"Compartirlo como burla sin verificar",k:"no",f:"❌ Difundir sin verificar genera desinformación, aunque sea en broma."},
+    {i:"🔍",t:"Investigar si es real en el sitio oficial del Congreso",k:"ok",f:"✅ ¡Correcto! Confirmar antes de opinar o compartir es siempre lo mejor."},
+    {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable, pero pierdes la oportunidad de reflexionar sobre libertad de expresión."}
+  ]},
+  {num:"03",tag:"💡 Viral",tc:"tag-b",
+   title:"Meme sobre Claudia Sheinbaum",
+   img:"https://i.postimg.cc/ZRLKyJm3/luz.jpg",
+   sit:"Circula un meme sobre un supuesto comentario de la presidenta Claudia Sheinbaum sobre apagar luces o usar menos calentador para ahorrar energía.",
+   opts:[
+    {i:"😆",t:"Reír y compartir el meme",k:"no",f:"❌ Compartir memes sin verificar contribuye a la desinformación política."},
+    {i:"🔍",t:"Investigar si realmente lo dijo buscando la declaración completa",k:"ok",f:"✅ ¡Correcto! Verificar fuentes oficiales evita caer en desinformación."},
+    {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable. No lo viralizas, pero tampoco ayudas a otros a distinguir lo verdadero de lo falso."}
+  ]}
 ];
 
 let cur=0,score=0,answered=false;
 
-function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
+function sfl(a){return[...a].sort(()=>Math.random()-.5);}
 
-function updateDots(){
+function dots(){
   for(let i=0;i<3;i++){
-    const d=document.getElementById('d'+i);
-    d.className='prog-dot'+(i<cur?' done':i===cur?' active':'');
+    const d=document.getElementById('s'+i);
+    d.className='step'+(i<cur?' done':i===cur?' on':'');
   }
-  document.getElementById('prog-text').textContent='Escenario '+(cur+1)+' de 3';
-  document.getElementById('prog-pct').textContent=Math.round((cur/3)*100)+'%';
 }
 
 function render(){
-  if(cur>=3){showFinal();return;}
-  answered=false;
-  updateDots();
-  const sc=SC[cur];
-  const opts=shuffle(sc.opts);
-  const area=document.getElementById('game-area');
-  area._opts=opts;
-  area.innerHTML=`
-  <div class="sc-wrap">
-    <div class="sc-card">
-      <div class="sc-img-wrap">
-        <img class="sc-img" src="${sc.img}" alt="${sc.title}">
-        <div class="sc-img-overlay"></div>
-        <div class="sc-top-badges">
-          <span class="sc-num">Escenario ${sc.num}</span>
-          <span class="sc-alert ${sc.alertCls}">${sc.alertTxt}</span>
-        </div>
-        <div class="sc-title-wrap">
-          <div class="sc-title">${sc.title}</div>
-          <div class="sc-subtitle">${sc.sub}</div>
-        </div>
+  if(cur>=3){showFin();return;}
+  answered=false;dots();
+  const d=DATA[cur],opts=sfl(d.opts);
+  document.getElementById('area')._opts=opts;
+  document.getElementById('area').innerHTML=`
+  <div class="card">
+    <div class="img-box">
+      <img src="${d.img}" alt="${d.title}">
+      <div class="img-fade"></div>
+      <div class="img-tags">
+        <span class="tag tag-n">Escenario ${d.num}</span>
+        <span class="tag ${d.tc}">${d.tag}</span>
       </div>
-      <div class="sc-sit">
-        <div class="sc-sit-label"><span>📋</span> Situación</div>
-        <div class="sc-sit-text">${sc.sit}</div>
-      </div>
-      <div class="opts-label">👇 ¿Qué harías tú?</div>
-      <div class="opts">
-        ${opts.map((o,i)=>`
-          <button class="opt" onclick="choose(${i})" id="opt${i}">
-            <span class="opt-icon">${o.icon}</span>
-            <span>${o.txt}</span>
-          </button>`).join('')}
-      </div>
-      <div class="feedback" id="feedback"></div>
-      <button class="next-btn" id="next-btn" onclick="nextQ()">
-        ${cur<2?'Siguiente escenario →':'Ver mis resultados →'}
-      </button>
+      <div class="img-title"><h2>${d.title}</h2></div>
     </div>
+    <div class="sit">
+      <div class="sit-lbl">📋 Situación</div>
+      <div class="sit-txt">${d.sit}</div>
+    </div>
+    <div class="opts-lbl">👇 ¿Qué harías tú?</div>
+    <div class="opts">
+      ${opts.map((o,i)=>`<button class="opt" onclick="pick(${i})" id="o${i}"><span class="ico">${o.i}</span><span>${o.t}</span></button>`).join('')}
+    </div>
+    <div class="fb" id="fb"></div>
+    <button class="nxt" id="nxt" onclick="next()">${cur<2?'Siguiente escenario →':'Ver mis resultados →'}</button>
   </div>`;
 }
 
-function choose(i){
+function pick(i){
   if(answered)return;
   answered=true;
-  const opts=document.getElementById('game-area')._opts;
+  const opts=document.getElementById('area')._opts;
   const c=opts[i];
-  if(c.type==='correct')score++;
+  if(c.k==='ok')score++;
   for(let j=0;j<opts.length;j++){
-    const b=document.getElementById('opt'+j);
+    const b=document.getElementById('o'+j);
     b.disabled=true;
-    if(j===i)b.classList.add(c.type==='correct'?'correct':c.type==='partial'?'partial':'wrong');
-    else b.classList.add('dimmed');
+    j===i?b.classList.add(c.k):b.classList.add('dim');
   }
-  const fb=document.getElementById('feedback');
-  fb.textContent=c.fb;
-  fb.className='feedback '+(c.type==='correct'?'correct':c.type==='partial'?'partial':'wrong');
-  fb.style.display='block';
-  document.getElementById('next-btn').style.display='block';
+  const fb=document.getElementById('fb');
+  fb.textContent=c.f;fb.className='fb '+c.k;fb.style.display='block';
+  document.getElementById('nxt').style.display='block';
 }
 
-function nextQ(){cur++;render();}
+function next(){cur++;render();}
 
-function showFinal(){
-  document.getElementById('game-area').innerHTML='';
-  document.getElementById('prog-wrap').style.display='none';
-  document.getElementById('final').style.display='block';
-  document.getElementById('s-num').textContent=score+'/3';
-  const emojis=['😓','🤔','🏆'];
-  const stars=['⭐','⭐⭐','⭐⭐⭐'];
-  const msgs=[
-    'Sigue practicando. El pensamiento crítico se entrena todos los días. ¡Vuelve a intentarlo y mejora tu puntaje!',
-    'Vas por buen camino. Recuerda siempre verificar antes de compartir cualquier información en redes.',
-    '¡Excelente! Eres un ejemplo de ciudadanía digital responsable. ¡Comparte estos conocimientos con otros!'
-  ];
-  document.getElementById('f-emoji').textContent=emojis[score];
-  document.getElementById('f-stars').textContent=stars[score];
-  document.getElementById('f-msg').textContent=msgs[score];
+function showFin(){
+  document.getElementById('area').innerHTML='';
+  document.querySelector('.steps').style.display='none';
+  const fin=document.getElementById('fin');
+  fin.style.display='block';
+  document.getElementById('rnum').textContent=score+'/3';
+  document.getElementById('fem').textContent=['😓','🤔','🏆'][score];
+  document.getElementById('fstars').textContent=['⭐','⭐⭐','⭐⭐⭐'][score];
+  document.getElementById('fmsg').textContent=[
+    'Sigue practicando. El pensamiento crítico se entrena todos los días. ¡Inténtalo de nuevo!',
+    'Vas por buen camino. Siempre verifica antes de compartir cualquier información.',
+    '¡Excelente! Eres un ejemplo de ciudadanía digital responsable.'
+  ][score];
   setTimeout(()=>{
-    const offset=289-(289*(score/3));
-    document.getElementById('s-circle').style.strokeDashoffset=offset;
+    document.getElementById('arc').style.strokeDashoffset=264-(264*(score/3));
   },300);
 }
 
 function restart(){
   cur=0;score=0;answered=false;
-  document.getElementById('final').style.display='none';
-  document.getElementById('prog-wrap').style.display='block';
+  document.getElementById('fin').style.display='none';
+  document.querySelector('.steps').style.display='flex';
   render();
 }
 
