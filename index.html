@@ -24,14 +24,15 @@
       max-width: 700px;
       margin: 30px auto;
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
       padding: 20px;
       text-align: center;
+      animation: fadeIn 0.6s ease;
     }
     .escenario img {
       max-width: 100%;
-      border-radius: 10px;
+      border-radius: 12px;
       margin-bottom: 15px;
     }
     .escenario h3 {
@@ -40,12 +41,12 @@
     }
     button {
       margin: 8px;
-      padding: 12px 20px;
+      padding: 14px 22px;
       border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      font-size: 14px;
-      transition: transform 0.2s;
+      font-size: 15px;
+      transition: transform 0.2s, background-color 0.3s;
     }
     button:hover { transform: scale(1.05); }
     .btn-verificar { background-color: #2e7d32; color: #fff; }
@@ -56,9 +57,9 @@
     .share-buttons a {
       margin: 8px;
       text-decoration: none;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 15px;
       color: #fff;
       display: inline-block;
     }
@@ -68,6 +69,10 @@
     @media (max-width: 600px) {
       .escenario { margin: 15px; padding: 15px; }
       button { width: 100%; margin: 6px 0; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -81,9 +86,9 @@
   <img src="EMIGRAR_CANADA.png" alt="Estafa Canadá">
   <h3>Escenario 1: Estafa de migración a Canadá</h3>
   <p>En redes circula un video que promete trabajo y casa inmediata si migras a Canadá. ¿Qué haces?</p>
-  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: riesgo de difundir fraude.')">Compartirlo</button>
-  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: verificar en fuentes oficiales protege tu seguridad.')">Verificar en fuentes oficiales</button>
-  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: reduces el riesgo, pero no ayudas a otros a evitarlo.')">Ignorarlo</button>
+  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: riesgo de difundir fraude.')">❌ Compartirlo</button>
+  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: verificar en fuentes oficiales protege tu seguridad.')">✅ Verificar en fuentes oficiales</button>
+  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: reduces el riesgo, pero no ayudas a otros a evitarlo.')">⚠️ Ignorarlo</button>
   <div id="feedback"></div>
   <button class="btn-siguiente" onclick="siguienteEscenario(2)">➡️ Siguiente</button>
 </div>
@@ -92,9 +97,9 @@
   <img src="MEME_MORENA.png" alt="Meme Morena">
   <h3>Escenario 2: Meme político sobre Morena</h3>
   <p>Se viraliza la noticia de que un diputado de Morena propone cárcel por crear o difundir memes. ¿Qué haces?</p>
-  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: difundir sin contexto puede generar miedo.')">Compartirlo como burla</button>
-  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: confirmar la iniciativa en fuentes oficiales te permite opinar con fundamento.')">Investigar si es real</button>
-  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: evitas viralizarlo, pero pierdes oportunidad de reflexionar.')">Ignorarlo</button>
+  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: difundir sin contexto puede generar miedo.')">❌ Compartirlo como burla</button>
+  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: confirmar la iniciativa en fuentes oficiales te permite opinar con fundamento.')">✅ Investigar si es real</button>
+  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: evitas viralizarlo, pero pierdes oportunidad de reflexionar.')">⚠️ Ignorarlo</button>
   <div id="feedback"></div>
   <button class="btn-siguiente" onclick="siguienteEscenario(3)">➡️ Siguiente</button>
 </div>
@@ -103,9 +108,9 @@
   <img src="MEME_SHEINBAUM.png" alt="Meme Sheinbaum">
   <h3>Escenario 3: Meme sobre Claudia Sheinbaum y el ahorro de luz</h3>
   <p>Circula un meme sobre un comentario de la presidenta acerca de apagar las luces o el uso del calentador solar. ¿Qué haces?</p>
-  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: difundir memes sin verificar puede reforzar la desinformación.')">Reír y compartir</button>
-  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: verificar declaraciones oficiales evita que los memes generen desinformación.')">Investigar si realmente lo dijo</button>
-  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: no contribuyes a la viralización, pero tampoco ayudas a otros.')">Ignorarlo</button>
+  <button class="btn-compartir" onclick="mostrarFeedback('Compartirlo: difundir memes sin verificar puede reforzar la desinformación.')">❌ Reír y compartir</button>
+  <button class="btn-verificar" onclick="mostrarFeedback('Correcto: verificar declaraciones oficiales evita que los memes generen desinformación.')">✅ Investigar si realmente lo dijo</button>
+  <button class="btn-ignorar" onclick="mostrarFeedback('Ignorarlo: no contribuyes a la viralización, pero tampoco ayudas a otros.')">⚠️ Ignorarlo</button>
   <div id="feedback"></div>
   <button class="btn-siguiente" onclick="mostrarResultados()">📊 Ver resultados</button>
 </div>
