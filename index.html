@@ -9,158 +9,158 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .title-font {
-            font-family: 'Space Grotesk', sans-serif;
-        }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-        }
-        
-        .card {
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .card:hover {
-            transform: scale(1.05) translateY(-10px);
+        body { font-family: 'Inter', sans-serif; }
+        .title-font { font-family: 'Space Grotesk', sans-serif; }
+
+        .modal-content {
+            max-height: 85vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
         }
     </style>
 </head>
-<body class="bg-zinc-50 text-zinc-900">
+<body class="bg-zinc-950 text-white min-h-screen">
 
-    <!-- Navbar -->
-    <nav class="bg-white border-b shadow-sm sticky top-0 z-50">
+    <nav class="bg-black border-b border-zinc-800 sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
             <div class="flex items-center gap-4">
                 <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Logo UTEL" class="h-14">
                 <div>
-                    <span class="block text-emerald-600 font-bold text-xl tracking-wider">SEMENA 1</span>
-                    <h1 class="title-font text-3xl font-bold tracking-tighter -mt-1">Detectives de la Verdad</h1>
+                    <span class="text-emerald-500 font-bold tracking-widest">SEMANA 1</span>
+                    <h1 class="title-font text-3xl font-bold tracking-tighter">Detectives de la Verdad</h1>
                 </div>
-            </div>
-            <div class="flex items-center gap-3 bg-emerald-50 text-emerald-700 px-6 py-3 rounded-3xl font-medium">
-                <i class="fa-solid fa-fire"></i>
-                <span id="score">0</span> Puntos
             </div>
         </div>
     </nav>
 
     <div class="max-w-6xl mx-auto px-6 py-12">
-        <!-- Hero -->
-        <div class="hero-bg text-white rounded-3xl p-16 text-center mb-16 shadow-xl">
-            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-6 py-2 rounded-full text-sm mb-6">
-                <span class="font-bold">📍 SEMANA 1</span>
-            </div>
-            <h2 class="title-font text-5xl md:text-6xl font-bold mb-4">
-                ¿Puedes detectar<br>la <span class="underline decoration-white/40">desinformación</span>?
-            </h2>
-            <p class="text-xl max-w-2xl mx-auto opacity-90">
-                3 escenarios reales. Decisiones inteligentes. Gana puntos y conviértete en un Detector de Verdad.
-            </p>
+        <div class="text-center mb-16">
+            <h2 class="title-font text-5xl font-bold mb-4">Enfrenta la desinformación</h2>
+            <p class="text-zinc-400 text-xl">3 escenarios reales • Semana 1</p>
         </div>
 
-        <!-- Grid de Escenarios -->
         <div class="grid md:grid-cols-3 gap-8" id="scenarios-grid"></div>
     </div>
 
     <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-6 z-50">
-        <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl overflow-hidden">
-            <div class="px-8 pt-8 pb-6">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <span id="modal-icon" class="text-4xl"></span>
-                        <h3 id="modal-title" class="title-font text-3xl font-bold mt-2"></h3>
-                    </div>
-                    <button onclick="closeModal()" class="text-4xl text-zinc-300 hover:text-zinc-500">×</button>
+    <div id="modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center p-4 z-50">
+        <div class="bg-zinc-900 rounded-3xl w-full max-w-xl modal-content">
+            
+            <div class="p-6 border-b border-zinc-800 flex items-center justify-between sticky top-0 bg-zinc-900 z-10">
+                <div class="flex items-center gap-3">
+                    <span id="modal-icon" class="text-3xl"></span>
+                    <h3 id="modal-title" class="title-font text-2xl font-bold"></h3>
                 </div>
-                
-                <div id="modal-image" class="my-8 text-8xl text-center h-40 flex items-center justify-center"></div>
-                
-                <p id="modal-situation" class="text-zinc-600 leading-relaxed text-lg"></p>
+                <button onclick="closeModal()" class="text-4xl text-zinc-400 hover:text-white">×</button>
             </div>
 
-            <div class="p-8 bg-zinc-50 border-t" id="options-container"></div>
+            <div class="p-8">
+                <div id="modal-image" class="w-full h-56 bg-zinc-800 rounded-2xl mb-8 flex items-center justify-center text-7xl overflow-hidden"></div>
+                
+                <p id="modal-situation" class="text-zinc-300 leading-relaxed text-[17px]"></p>
+
+                <div class="mt-10 space-y-4" id="options-container"></div>
+            </div>
 
             <!-- Feedback -->
-            <div id="feedback-section" class="hidden p-8 border-t">
+            <div id="feedback-section" class="hidden p-8 border-t border-zinc-800 bg-zinc-950">
                 <div id="feedback-card" class="rounded-2xl p-6"></div>
                 <button onclick="nextScenario()" 
-                        class="mt-6 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-4 rounded-2xl text-lg transition-all">
+                        class="mt-6 w-full py-5 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-2xl text-lg transition-all">
                     Siguiente Escenario →
                 </button>
             </div>
         </div>
     </div>
 
+    <footer class="bg-black py-8 text-center text-zinc-500 text-sm border-t border-zinc-800">
+        by Armando Sandoval Maravilla
+    </footer>
+
     <script>
-        let currentScore = 0;
         let currentScenario = null;
 
-        const scenarios = [ /* mismo contenido que antes */ 
-            { id:1, title:"Estafa de Migración a Canadá", icon:"🇨🇦", image:"🛫", situation:"En redes circula un video con el mensaje “Emigrar fácil y rápido a Canadá” acompañado de promesas de trabajo y casa inmediata.", options:[
-                {text:"Compartirlo con mis contactos", feedback:"❌ Difundir sin verificar puede reforzar fraudes.", score:-15, correct:false},
-                {text:"Verificar en fuentes oficiales", feedback:"✅ ¡Excelente decisión! Consultar fuentes oficiales fortalece tu pensamiento crítico.", score:35, correct:true},
-                {text:"Ignorarlo", feedback:"⚠️ No ayudas a propagar el fraude, pero tampoco proteges a otros.", score:5, correct:false}
-            ]},
-            { id:2, title:"Ley Anti-Stickers de Morena", icon:"📱", image:"🤖", situation:"Se viraliza que un diputado de Morena propone cárcel por crear memes, stickers o gifs satíricos.", options:[
-                {text:"Compartir como burla", feedback:"❌ Difundir sin verificar genera desinformación.", score:-15, correct:false},
-                {text:"Investigar si la iniciativa es real", feedback:"✅ Perfecto. Siempre verifica antes de opinar.", score:35, correct:true},
-                {text:"Ignorarlo", feedback:"⚠️ Evitas viralizarlo, pero pierdes una oportunidad de reflexionar.", score:5, correct:false}
-            ]},
-            { id:3, title:"Meme sobre Claudia Sheinbaum y el ahorro de luz", icon:"💡", image:"🌞", situation:"Circula un meme sobre un supuesto comentario de la presidenta sobre apagar luces y ahorrar energía.", options:[
-                {text:"Reír y compartir", feedback:"❌ Los memes sin verificar pueden engañar.", score:-15, correct:false},
-                {text:"Investigar la declaración original", feedback:"✅ Muy bien. Verificar evita la desinformación.", score:35, correct:true},
-                {text:"Ignorarlo", feedback:"⚠️ No contribuyes, pero tampoco ayudas a otros.", score:5, correct:false}
-            ]}
+        const scenarios = [
+            {
+                id: 1,
+                title: "Estafa de Migración a Canadá",
+                icon: "🇨🇦",
+                image: "https://images.unsplash.com/photo-1504608524841-9e4f4a5b7c5e?w=800",
+                situation: "En redes sociales circula un video viral con el mensaje “Emigrar fácil y rápido a Canadá” acompañado de la bandera canadiense y promesas de trabajo garantizado y casa inmediata.",
+                options: [
+                    {text: "Compartir inmediatamente con mis contactos", feedback: "❌ Difundir sin verificar puede reforzar fraudes y poner en riesgo a otros.", score: -10, correct: false},
+                    {text: "Verificar en fuentes oficiales", feedback: "✅ ¡Excelente! Consultar fuentes oficiales fortalece tu pensamiento crítico y protege tu seguridad.", score: 30, correct: true},
+                    {text: "Ignorarlo", feedback: "⚠️ No contribuyes al fraude, pero tampoco ayudas a otros.", score: 0, correct: false}
+                ]
+            },
+            {
+                id: 2,
+                title: "Ley Anti-Stickers de Morena",
+                icon: "📱",
+                image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800",
+                situation: "Se viraliza la noticia de que un diputado de Morena propone penas de cárcel por crear o difundir memes, stickers o gifs que dañen la reputación, incluso sátira política.",
+                options: [
+                    {text: "Compartir como burla", feedback: "❌ Difundir sin contexto puede generar miedo o desinformación.", score: -10, correct: false},
+                    {text: "Investigar si la iniciativa es real", feedback: "✅ Muy bien. Confirmar en fuentes oficiales te permite opinar con fundamento.", score: 30, correct: true},
+                    {text: "Ignorarlo", feedback: "⚠️ Evitas viralizarlo, pero pierdes la oportunidad de reflexionar sobre libertad de expresión.", score: 0, correct: false}
+                ]
+            },
+            {
+                id: 3,
+                title: "Meme sobre Claudia Sheinbaum y el ahorro de luz",
+                icon: "💡",
+                image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?w=800",
+                situation: "Circula un meme sobre un comentario de la presidenta Claudia Sheinbaum acerca de apagar las luces o el uso del calentador solar.",
+                options: [
+                    {text: "Reír y compartir", feedback: "❌ Difundir memes sin verificar puede reforzar la desinformación.", score: -10, correct: false},
+                    {text: "Investigar si realmente lo dijo", feedback: "✅ Correcto. Verificar declaraciones oficiales evita que los memes generen desinformación.", score: 30, correct: true},
+                    {text: "Ignorarlo", feedback: "⚠️ No contribuyes a la viralización, pero tampoco ayudas a otros.", score: 0, correct: false}
+                ]
+            }
         ];
-
-        function updateScore(points) {
-            currentScore += points;
-            document.getElementById('score').textContent = Math.max(0, currentScore);
-        }
 
         function renderScenarios() {
             const container = document.getElementById('scenarios-grid');
             container.innerHTML = scenarios.map(sc => `
-                <div onclick="openScenario(${sc.id})" class="card bg-white border border-zinc-200 rounded-3xl p-8 cursor-pointer group">
-                    <div class="text-6xl mb-6">${sc.icon}</div>
-                    <div class="text-emerald-600 font-bold text-sm mb-2">ESCENARIO ${sc.id}</div>
-                    <h3 class="title-font text-2xl font-bold mb-4 group-hover:text-emerald-600 transition-colors">${sc.title}</h3>
-                    <p class="text-zinc-500 line-clamp-3">Enfrenta este caso real de desinformación.</p>
+                <div onclick="openScenario(${sc.id})" class="bg-zinc-900 border border-zinc-700 hover:border-emerald-500 rounded-3xl p-8 cursor-pointer transition-all hover:scale-105">
+                    <div class="text-6xl mb-4">${sc.icon}</div>
+                    <h3 class="title-font text-2xl font-bold mb-3">Escenario ${sc.id}</h3>
+                    <p class="text-zinc-400">${sc.title}</p>
                 </div>
             `).join('');
         }
 
         function openScenario(id) {
             currentScenario = scenarios.find(s => s.id === id);
+            if (!currentScenario) return;
+
             document.getElementById('modal').classList.remove('hidden');
-            
             document.getElementById('modal-icon').textContent = currentScenario.icon;
             document.getElementById('modal-title').textContent = currentScenario.title;
-            document.getElementById('modal-image').textContent = currentScenario.image;
+            
+            // Imagen real
+            document.getElementById('modal-image').innerHTML = `<img src="${currentScenario.image}" class="w-full h-full object-cover rounded-2xl" alt="escenario">`;
+            
             document.getElementById('modal-situation').textContent = currentScenario.situation;
             document.getElementById('feedback-section').classList.add('hidden');
 
             const optionsHTML = currentScenario.options.map((opt, i) => `
-                <button onclick="selectOption(${i})" class="w-full text-left p-5 mb-4 bg-white hover:bg-emerald-50 border-2 border-transparent hover:border-emerald-200 rounded-2xl transition-all text-lg">
+                <button onclick="selectOption(${i})" class="w-full text-left p-6 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 hover:border-emerald-500 rounded-2xl transition-all text-lg">
                     ${opt.text}
                 </button>
             `).join('');
+            
             document.getElementById('options-container').innerHTML = optionsHTML;
         }
 
         function selectOption(index) {
             const opt = currentScenario.options[index];
-            updateScore(opt.score);
-
-            document.getElementById('feedback-card').innerHTML = `
-                <div class="${opt.correct ? 'bg-emerald-50 border-emerald-300' : 'bg-red-50 border-red-300'} border-2 rounded-2xl p-6">
-                    <p class="text-xl font-medium">${opt.feedback}</p>
+            const feedbackHTML = `
+                <div class="${opt.correct ? 'bg-emerald-900/30 border border-emerald-500' : 'bg-red-900/30 border border-red-500'} rounded-2xl p-6">
+                    <p class="text-lg">${opt.feedback}</p>
                 </div>
             `;
+            document.getElementById('feedback-card').innerHTML = feedbackHTML;
             document.getElementById('feedback-section').classList.remove('hidden');
         }
 
@@ -170,8 +170,8 @@
 
         function nextScenario() {
             closeModal();
-            const next = currentScenario.id < 3 ? currentScenario.id + 1 : 1;
-            openScenario(next);
+            const nextId = currentScenario.id < 3 ? currentScenario.id + 1 : 1;
+            setTimeout(() => openScenario(nextId), 300);
         }
 
         window.onload = renderScenarios;
