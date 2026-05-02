@@ -1,196 +1,301 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Semana 1 - Detectives de la Verdad | UTEL</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap');
-        
-        body { font-family: 'Inter', sans-serif; }
-        .title-font { font-family: 'Space Grotesk', sans-serif; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Alfabetización Digital · Semana 1 · Utel</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:#0f172a;min-height:100vh;}
+.app{max-width:480px;margin:0 auto;padding:0 0 40px;}
 
-        .modal-content {
-            max-height: 92vh;
-            overflow-y: auto;
-        }
-        
-        @media (max-width: 640px) {
-            .modal-content {
-                max-height: 95vh;
-                margin-top: auto;
-                margin-bottom: auto;
-            }
-        }
-    </style>
+/* HEADER */
+.hdr{background:#0f172a;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;border-bottom:1px solid rgba(255,255,255,.08);}
+.hdr-logo{height:34px;object-fit:contain;filter:brightness(0) invert(1);}
+.hdr-badge{background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-size:11px;font-weight:700;padding:4px 11px;border-radius:20px;letter-spacing:.5px;}
+
+/* PROGRESS */
+.prog-wrap{padding:14px 16px 0;}
+.prog-label{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:8px;}
+.prog-dots{display:flex;gap:6px;}
+.prog-dot{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.12);transition:background .4s;}
+.prog-dot.done{background:linear-gradient(90deg,#3b82f6,#8b5cf6);}
+.prog-dot.active{background:rgba(99,102,241,.5);}
+
+/* SCENARIO */
+.sc-wrap{padding:14px 16px 0;}
+.sc-card{border-radius:20px;overflow:hidden;background:#1e293b;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+
+/* IMAGE */
+.sc-img-wrap{position:relative;height:210px;overflow:hidden;}
+.sc-img{width:100%;height:100%;object-fit:cover;display:block;}
+.sc-img-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(15,23,42,.95) 0%,rgba(15,23,42,.3) 55%,transparent 100%);}
+.sc-top-badges{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;align-items:flex-start;}
+.sc-num{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(15,23,42,.7);backdrop-filter:blur(8px);color:#94a3b8;border:1px solid rgba(255,255,255,.1);}
+.sc-alert{font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.15);}
+.alert-red{background:rgba(220,38,38,.7);color:#fecaca;}
+.alert-orange{background:rgba(234,88,12,.7);color:#fed7aa;}
+.alert-blue{background:rgba(37,99,235,.7);color:#bfdbfe;}
+.sc-title-wrap{position:absolute;bottom:0;left:0;right:0;padding:16px;}
+.sc-title{color:#fff;font-size:18px;font-weight:800;line-height:1.2;margin-bottom:4px;}
+.sc-subtitle{color:#94a3b8;font-size:12px;font-weight:500;}
+
+/* SITUATION */
+.sc-sit{margin:14px;background:rgba(255,255,255,.04);border-radius:14px;padding:13px;border:1px solid rgba(255,255,255,.07);}
+.sc-sit-label{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:#60a5fa;margin-bottom:7px;}
+.sc-sit-text{font-size:13px;color:#cbd5e1;line-height:1.65;}
+
+/* OPTIONS */
+.opts-label{padding:14px 14px 8px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#475569;}
+.opts{padding:0 14px 14px;display:flex;flex-direction:column;gap:8px;}
+.opt{width:100%;text-align:left;padding:13px 14px;border-radius:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.04);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:#e2e8f0;line-height:1.4;display:flex;align-items:center;gap:11px;transition:all .15s;-webkit-tap-highlight-color:transparent;}
+.opt:active{transform:scale(.97);}
+.opt:hover:not(:disabled){background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);}
+.opt:disabled{cursor:default;transform:none;}
+.opt-icon{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.opt.correct{background:rgba(22,163,74,.15);border-color:rgba(22,163,74,.5);color:#86efac;}
+.opt.correct .opt-icon{background:rgba(22,163,74,.3);}
+.opt.partial{background:rgba(217,119,6,.15);border-color:rgba(217,119,6,.5);color:#fcd34d;}
+.opt.partial .opt-icon{background:rgba(217,119,6,.3);}
+.opt.wrong{background:rgba(220,38,38,.15);border-color:rgba(220,38,38,.5);color:#fca5a5;}
+.opt.wrong .opt-icon{background:rgba(220,38,38,.3);}
+.opt.dimmed{opacity:.25;}
+
+/* FEEDBACK */
+.feedback{display:none;margin:0 14px 10px;padding:13px 14px;border-radius:14px;font-size:13px;font-weight:600;line-height:1.6;}
+.feedback.correct{background:rgba(22,163,74,.12);color:#86efac;border:1px solid rgba(22,163,74,.3);}
+.feedback.partial{background:rgba(217,119,6,.12);color:#fcd34d;border:1px solid rgba(217,119,6,.3);}
+.feedback.wrong{background:rgba(220,38,38,.12);color:#fca5a5;border:1px solid rgba(220,38,38,.3);}
+
+/* NEXT BTN */
+.next-btn{display:none;margin:4px 14px 16px;width:calc(100% - 28px);padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;letter-spacing:.3px;transition:opacity .15s;-webkit-tap-highlight-color:transparent;}
+.next-btn:active{opacity:.8;}
+
+/* FINAL */
+.final{display:none;padding:16px;}
+.final-card{background:#1e293b;border-radius:20px;padding:28px 20px;box-shadow:0 8px 32px rgba(0,0,0,.4);text-align:center;border:1px solid rgba(255,255,255,.07);}
+.final-emoji{font-size:60px;margin-bottom:16px;display:block;}
+.final-title{font-size:22px;font-weight:900;color:#f1f5f9;margin-bottom:4px;}
+.final-sub{font-size:13px;color:#64748b;margin-bottom:20px;}
+.score-ring{width:110px;height:110px;margin:0 auto 16px;position:relative;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring circle{fill:none;stroke:rgba(255,255,255,.07);stroke-width:9;}
+.score-ring circle.fill{stroke:url(#grad2);stroke-width:9;stroke-linecap:round;transition:stroke-dashoffset .9s cubic-bezier(.34,1.56,.64,1);}
+.score-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-big{font-size:30px;font-weight:900;color:#f1f5f9;line-height:1;}
+.score-label{font-size:11px;color:#64748b;font-weight:600;margin-top:2px;}
+.final-msg{font-size:14px;color:#94a3b8;line-height:1.7;margin:0 0 22px;}
+.stars{font-size:28px;margin-bottom:12px;letter-spacing:4px;}
+.restart-btn{width:100%;padding:15px;border-radius:14px;border:none;background:linear-gradient(135deg,#3b82f6,#8b5cf6);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.restart-btn:active{opacity:.8;}
+
+/* FIRMA */
+.firma{margin:14px 0 0;text-align:center;padding:18px;background:#1e293b;border-radius:20px;border:1px solid rgba(255,255,255,.07);}
+.firma img{height:26px;object-fit:contain;margin-bottom:8px;filter:brightness(0) invert(1);opacity:.5;}
+.firma p{font-size:12px;color:#475569;line-height:1.9;}
+.firma strong{color:#64748b;font-weight:700;}
+</style>
 </head>
-<body class="bg-zinc-950 text-white min-h-screen">
+<body>
+<div class="app">
+  <div class="hdr">
+    <img class="hdr-logo" src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
+    <div class="hdr-badge">SEMANA 1</div>
+  </div>
 
-    <nav class="bg-black border-b border-zinc-800 sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="UTEL" class="h-10">
-                <div>
-                    <span class="text-emerald-500 font-bold text-base">SEMANA 1</span>
-                    <h1 class="title-font text-2xl font-bold tracking-tighter">Detectives</h1>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div class="max-w-6xl mx-auto px-4 py-8">
-        <div class="text-center mb-12">
-            <h2 class="title-font text-4xl md:text-5xl font-bold">¿Puedes detectar la verdad?</h2>
-            <p class="text-zinc-400 mt-3">3 escenarios reales</p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="scenarios-grid"></div>
+  <div class="prog-wrap" id="prog-wrap">
+    <div class="prog-label">
+      <span id="prog-text">Escenario 1 de 3</span>
+      <span id="prog-pct" style="color:#8b5cf6;font-weight:700;">0%</span>
     </div>
-
-    <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/95 flex items-center justify-center p-4 z-50">
-        <div class="bg-zinc-900 rounded-3xl w-full max-w-lg modal-content">
-            
-            <div class="p-5 border-b border-zinc-800 flex items-center justify-between sticky top-0 bg-zinc-900">
-                <div class="flex items-center gap-3">
-                    <span id="modal-icon" class="text-4xl"></span>
-                    <h3 id="modal-title" class="title-font text-xl font-bold"></h3>
-                </div>
-                <button onclick="closeModal()" class="text-4xl leading-none text-zinc-400 hover:text-white">×</button>
-            </div>
-
-            <div class="p-6">
-                <div id="modal-image" class="w-full h-56 md:h-64 rounded-2xl overflow-hidden mb-6"></div>
-                <p id="modal-situation" class="text-zinc-300 leading-relaxed"></p>
-            </div>
-
-            <div class="px-6 space-y-3 pb-6" id="options-container"></div>
-
-            <div id="feedback-section" class="hidden p-6 border-t border-zinc-800">
-                <div id="feedback-card" class="rounded-2xl p-6 mb-6"></div>
-                
-                <div class="flex gap-3">
-                    <button onclick="shareWhatsApp()" 
-                            class="flex-1 flex items-center justify-center gap-2 bg-green-600 py-4 rounded-2xl text-sm font-medium">
-                        <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp
-                    </button>
-                    <button onclick="shareTwitter()" 
-                            class="flex-1 flex items-center justify-center gap-2 bg-sky-500 py-4 rounded-2xl text-sm font-medium">
-                        <i class="fa-brands fa-x-twitter text-xl"></i> X
-                    </button>
-                </div>
-                
-                <button onclick="nextScenario()" 
-                        class="mt-4 w-full py-5 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-2xl">
-                    Siguiente Escenario →
-                </button>
-            </div>
-        </div>
+    <div class="prog-dots">
+      <div class="prog-dot" id="d0"></div>
+      <div class="prog-dot" id="d1"></div>
+      <div class="prog-dot" id="d2"></div>
     </div>
+  </div>
 
-    <footer class="text-center py-8 text-zinc-500 text-sm border-t border-zinc-800">
-        by Armando Sandoval Maravilla
-    </footer>
+  <div id="game-area"></div>
 
-    <script>
-        let currentScenario = null;
+  <div class="final" id="final">
+    <div class="final-card">
+      <span class="final-emoji" id="f-emoji">🎯</span>
+      <div class="final-title">¡Juego completado!</div>
+      <div class="final-sub">Alfabetización Digital · Semana 1</div>
+      <div class="score-ring">
+        <svg width="110" height="110" viewBox="0 0 110 110">
+          <defs>
+            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#3b82f6"/>
+              <stop offset="100%" style="stop-color:#8b5cf6"/>
+            </linearGradient>
+          </defs>
+          <circle cx="55" cy="55" r="46"/>
+          <circle cx="55" cy="55" r="46" class="fill" id="s-circle" stroke-dasharray="289" stroke-dashoffset="289"/>
+        </svg>
+        <div class="score-num">
+          <div class="score-big" id="s-num">0/3</div>
+          <div class="score-label">correctas</div>
+        </div>
+      </div>
+      <div class="stars" id="f-stars">⭐</div>
+      <div class="final-msg" id="f-msg"></div>
+      <button class="restart-btn" onclick="restart()">🔄 Intentar de nuevo</button>
+    </div>
+    <div class="firma">
+      <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
+      <p><strong>Universidad Utel</strong><br>Docente: Armando Sandoval Maravilla</p>
+    </div>
+  </div>
+</div>
 
-        const scenarios = [
-            {
-                id: 1,
-                title: "Estafa de Migración a Canadá",
-                icon: "🇨🇦",
-                image: "https://images.unsplash.com/photo-1544620347-c4fd70cbf0d3?w=800",
-                situation: "En redes sociales circula un video viral con el mensaje “Emigrar fácil y rápido a Canadá” acompañado de promesas de trabajo y casa inmediata."
-            },
-            {
-                id: 2,
-                title: "Ley Anti-Stickers de Morena",
-                icon: "📱",
-                image: "https://images.unsplash.com/photo-1611162618071-6c3d6a4b4b4b?w=800",
-                situation: "Se viraliza que un diputado de Morena propone penas de cárcel por crear o difundir memes y stickers."
-            },
-            {
-                id: 3,
-                title: "Meme sobre Claudia Sheinbaum",
-                icon: "💡",
-                image: "https://images.unsplash.com/photo-1605379399642-870262d3d051?w=800",
-                situation: "Circula un meme sobre un comentario de la presidenta Claudia Sheinbaum acerca de ahorrar luz."
-            }
-        ];
+<script>
+const SC=[
+  {
+    num:"01", alertTxt:"🚨 Estafa", alertCls:"alert-red",
+    title:"Estafa de Migración a Canadá",
+    sub:"Pensamiento crítico en redes",
+    img:"https://i.postimg.cc/3RZJD3hG/estafas.jpg",
+    sit:"En redes sociales circula un video viral con el mensaje "Emigrar fácil y rápido a Canadá" con promesas de trabajo garantizado y casa inmediata.",
+    opts:[
+      {icon:"📤",txt:"Compartir inmediatamente con mis contactos",type:"wrong",fb:"❌ Incorrecto. Difundir sin verificar puede ayudar a que más personas caigan en estafas."},
+      {icon:"🔍",txt:"Verificar en fuentes oficiales (IRCC, Gobierno de Canadá)",type:"correct",fb:"✅ Correcto. Esta es la mejor opción. Fortalece el pensamiento crítico y protege a las personas."},
+      {icon:"🙈",txt:"Ignorarlo",type:"partial",fb:"⚠️ Parcialmente aceptable. No ayudas a difundir el fraude, pero tampoco ayudas a otros a identificar la desinformación."}
+    ]
+  },
+  {
+    num:"02", alertTxt:"⚖️ Político", alertCls:"alert-orange",
+    title:"Ley Anti-Stickers de Morena",
+    sub:"Libertad de expresión digital",
+    img:"https://i.postimg.cc/FRxsJhvL/morena.jpg",
+    sit:"Se viraliza la noticia de que un diputado de Morena propone penas de cárcel por crear o difundir memes, stickers o gifs que dañen la reputación de alguien.",
+    opts:[
+      {icon:"😂",txt:"Compartirlo como burla sin verificar",type:"wrong",fb:"❌ Incorrecto. Difundir sin verificar genera miedo o desinformación, aunque sea en broma."},
+      {icon:"🔍",txt:"Investigar si la iniciativa es real en el sitio oficial del Congreso",type:"correct",fb:"✅ Correcto. Siempre hay que confirmar la información antes de opinar o compartir."},
+      {icon:"🙈",txt:"Ignorarlo",type:"partial",fb:"⚠️ Aceptable, pero no ideal. Evitas propagar la noticia, pero pierdes la oportunidad de reflexionar sobre libertad de expresión."}
+    ]
+  },
+  {
+    num:"03", alertTxt:"💡 Viral", alertCls:"alert-blue",
+    title:"Meme sobre Claudia Sheinbaum",
+    sub:"Verificación de información política",
+    img:"https://i.postimg.cc/ZRLKyJm3/luz.jpg",
+    sit:"Circula un meme sobre un supuesto comentario de la presidenta Claudia Sheinbaum acerca de apagar las luces o usar menos el calentador para ahorrar energía.",
+    opts:[
+      {icon:"😆",txt:"Reír y compartir el meme",type:"wrong",fb:"❌ Incorrecto. Compartir memes sin verificar contribuye a la desinformación política."},
+      {icon:"🔍",txt:"Investigar si realmente lo dijo buscando la declaración completa",type:"correct",fb:"✅ Correcto. Verificar fuentes oficiales evita caer en desinformación."},
+      {icon:"🙈",txt:"Ignorarlo",type:"partial",fb:"⚠️ Aceptable. No contribuyes a viralizarlo, pero tampoco ayudas a otros a distinguir lo verdadero de lo falso."}
+    ]
+  }
+];
 
-        function renderScenarios() {
-            const container = document.getElementById('scenarios-grid');
-            container.innerHTML = scenarios.map(sc => `
-                <div onclick="openScenario(${sc.id})" class="bg-zinc-900 border border-zinc-700 hover:border-emerald-500 rounded-3xl p-6 cursor-pointer transition-all active:scale-95">
-                    <div class="text-5xl mb-4">${sc.icon}</div>
-                    <h3 class="title-font text-xl font-bold mb-1">Escenario ${sc.id}</h3>
-                    <p class="text-zinc-400 text-sm">${sc.title}</p>
-                </div>
-            `).join('');
-        }
+let cur=0,score=0,answered=false;
 
-        function openScenario(id) {
-            currentScenario = scenarios.find(s => s.id === id);
-            document.getElementById('modal').classList.remove('hidden');
-            
-            document.getElementById('modal-icon').innerHTML = currentScenario.icon;
-            document.getElementById('modal-title').textContent = currentScenario.title;
-            document.getElementById('modal-image').innerHTML = `<img src="${currentScenario.image}" class="w-full h-full object-cover" alt="imagen">`;
-            document.getElementById('modal-situation').textContent = currentScenario.situation;
-            document.getElementById('feedback-section').classList.add('hidden');
+function shuffle(a){return[...a].sort(()=>Math.random()-.5);}
 
-            const options = [
-                "Compartir inmediatamente con mis contactos",
-                "Verificar en fuentes oficiales",
-                "Ignorarlo"
-            ];
+function updateDots(){
+  for(let i=0;i<3;i++){
+    const d=document.getElementById('d'+i);
+    d.className='prog-dot'+(i<cur?' done':i===cur?' active':'');
+  }
+  document.getElementById('prog-text').textContent='Escenario '+(cur+1)+' de 3';
+  document.getElementById('prog-pct').textContent=Math.round((cur/3)*100)+'%';
+}
 
-            document.getElementById('options-container').innerHTML = options.map((text, i) => `
-                <button onclick="selectOption(${i})" class="w-full p-5 bg-zinc-800 hover:bg-zinc-700 rounded-2xl text-left transition-all active:scale-95">
-                    ${text}
-                </button>
-            `).join('');
-        }
+function render(){
+  if(cur>=3){showFinal();return;}
+  answered=false;
+  updateDots();
+  const sc=SC[cur];
+  const opts=shuffle(sc.opts);
+  const area=document.getElementById('game-area');
+  area._opts=opts;
+  area.innerHTML=`
+  <div class="sc-wrap">
+    <div class="sc-card">
+      <div class="sc-img-wrap">
+        <img class="sc-img" src="${sc.img}" alt="${sc.title}">
+        <div class="sc-img-overlay"></div>
+        <div class="sc-top-badges">
+          <span class="sc-num">Escenario ${sc.num}</span>
+          <span class="sc-alert ${sc.alertCls}">${sc.alertTxt}</span>
+        </div>
+        <div class="sc-title-wrap">
+          <div class="sc-title">${sc.title}</div>
+          <div class="sc-subtitle">${sc.sub}</div>
+        </div>
+      </div>
+      <div class="sc-sit">
+        <div class="sc-sit-label"><span>📋</span> Situación</div>
+        <div class="sc-sit-text">${sc.sit}</div>
+      </div>
+      <div class="opts-label">👇 ¿Qué harías tú?</div>
+      <div class="opts">
+        ${opts.map((o,i)=>`
+          <button class="opt" onclick="choose(${i})" id="opt${i}">
+            <span class="opt-icon">${o.icon}</span>
+            <span>${o.txt}</span>
+          </button>`).join('')}
+      </div>
+      <div class="feedback" id="feedback"></div>
+      <button class="next-btn" id="next-btn" onclick="nextQ()">
+        ${cur<2?'Siguiente escenario →':'Ver mis resultados →'}
+      </button>
+    </div>
+  </div>`;
+}
 
-        function selectOption(choice) {
-            const messages = [
-                {msg: "❌ Difundir sin verificar puede reforzar fraudes.", color: "red"},
-                {msg: "✅ ¡Excelente! Verificar fuentes oficiales es la mejor decisión.", color: "emerald"},
-                {msg: "⚠️ No propagas el fraude, pero tampoco ayudas a otros.", color: "amber"}
-            ];
+function choose(i){
+  if(answered)return;
+  answered=true;
+  const opts=document.getElementById('game-area')._opts;
+  const c=opts[i];
+  if(c.type==='correct')score++;
+  for(let j=0;j<opts.length;j++){
+    const b=document.getElementById('opt'+j);
+    b.disabled=true;
+    if(j===i)b.classList.add(c.type==='correct'?'correct':c.type==='partial'?'partial':'wrong');
+    else b.classList.add('dimmed');
+  }
+  const fb=document.getElementById('feedback');
+  fb.textContent=c.fb;
+  fb.className='feedback '+(c.type==='correct'?'correct':c.type==='partial'?'partial':'wrong');
+  fb.style.display='block';
+  document.getElementById('next-btn').style.display='block';
+}
 
-            document.getElementById('feedback-card').innerHTML = `
-                <div class="bg-${messages[choice].color}-900/30 border border-${messages[choice].color}-500 rounded-2xl p-5 text-lg">
-                    ${messages[choice].msg}
-                </div>
-            `;
-            document.getElementById('feedback-section').classList.remove('hidden');
-        }
+function nextQ(){cur++;render();}
 
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-        }
+function showFinal(){
+  document.getElementById('game-area').innerHTML='';
+  document.getElementById('prog-wrap').style.display='none';
+  document.getElementById('final').style.display='block';
+  document.getElementById('s-num').textContent=score+'/3';
+  const emojis=['😓','🤔','🏆'];
+  const stars=['⭐','⭐⭐','⭐⭐⭐'];
+  const msgs=[
+    'Sigue practicando. El pensamiento crítico se entrena todos los días. ¡Vuelve a intentarlo y mejora tu puntaje!',
+    'Vas por buen camino. Recuerda siempre verificar antes de compartir cualquier información en redes.',
+    '¡Excelente! Eres un ejemplo de ciudadanía digital responsable. ¡Comparte estos conocimientos con otros!'
+  ];
+  document.getElementById('f-emoji').textContent=emojis[score];
+  document.getElementById('f-stars').textContent=stars[score];
+  document.getElementById('f-msg').textContent=msgs[score];
+  setTimeout(()=>{
+    const offset=289-(289*(score/3));
+    document.getElementById('s-circle').style.strokeDashoffset=offset;
+  },300);
+}
 
-        function nextScenario() {
-            closeModal();
-            const nextId = currentScenario.id < 3 ? currentScenario.id + 1 : 1;
-            setTimeout(() => openScenario(nextId), 300);
-        }
+function restart(){
+  cur=0;score=0;answered=false;
+  document.getElementById('final').style.display='none';
+  document.getElementById('prog-wrap').style.display='block';
+  render();
+}
 
-        function shareWhatsApp() {
-            const msg = "Completé los escenarios de Semana 1 - Detectives de la Verdad UTEL. ¡Cuidemos la información!";
-            window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`);
-        }
-
-        function shareTwitter() {
-            const msg = "Terminé los escenarios de desinformación de la Semana 1 en UTEL";
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(msg)}`);
-        }
-
-        window.onload = renderScenarios;
-    </script>
+render();
+</script>
 </body>
 </html>
