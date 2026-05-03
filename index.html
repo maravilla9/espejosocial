@@ -110,7 +110,7 @@ html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;}
     <div class="fin-card">
       <div class="fin-em" id="fem">🎯</div>
       <div class="fin-h">¡Juego completado!</div>
-      <div class="fin-s">· Semana 1</div>
+      <div class="fin-s">Semana 1 · Universidad Utel</div>
       <div class="ring">
         <svg width="110" height="110" viewBox="0 0 100 100">
           <defs>
@@ -213,9 +213,9 @@ function showFin(){
   // Share buttons
   const pageUrl = encodeURIComponent(window.location.href);
   const emojis=['😓','🤔','🏆'];
-  const shareMsg=encodeURIComponent(`${emojis[score]} Obtuve ${score}/3 en el juego de Alfabetización Digital de la Universidad Utel - Semana 1. ¿Tú puedes hacerlo mejor? 👇\n${window.location.href}`);
+  const shareMsg=encodeURIComponent(`${emojis[score]} Obtuve ${score}/3 en el juego de Universidad Utel de la Universidad Utel - Semana 1. ¿Tú puedes hacerlo mejor? 👇\n${window.location.href}`);
   document.getElementById('btn-wa').href=`https://wa.me/?text=${shareMsg}`;
-  document.getElementById('btn-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}&quote=${encodeURIComponent(`Obtuve ${score}/3 en el juego de Alfabetización Digital · Universidad Utel`)}`;
+  document.getElementById('btn-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}&quote=${encodeURIComponent(`Obtuve ${score}/3 en el juego de Universidad Utel · Universidad Utel`)}`;
 }
 function restart(){
   cur=0;score=0;answered=false;
