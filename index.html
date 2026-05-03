@@ -7,114 +7,122 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;height:100%;}
-.shell{max-width:420px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;}
+html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;}
+.shell{max-width:420px;margin:0 auto;padding-bottom:30px;}
 
 /* TOP BAR */
-.bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:#0a0a0f;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0;}
-.bar-logo{height:28px;filter:brightness(0) invert(1);}
-.bar-pill{background:linear-gradient(135deg,#6366f1,#a855f7);font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:20px;}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#0a0a0f;border-bottom:1px solid rgba(255,255,255,.06);position:sticky;top:0;z-index:10;}
+.bar-logo{height:30px;filter:brightness(0) invert(1);}
+.bar-pill{background:linear-gradient(135deg,#6366f1,#a855f7);font-size:10px;font-weight:800;letter-spacing:1px;padding:5px 12px;border-radius:20px;}
 
 /* STEP DOTS */
-.steps{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 14px 0;flex-shrink:0;}
+.steps{display:flex;align-items:center;justify-content:center;gap:6px;padding:12px 16px 0;}
 .step{width:32px;height:4px;border-radius:2px;background:rgba(255,255,255,.1);transition:all .3s;}
-.step.on{background:linear-gradient(90deg,#6366f1,#a855f7);width:48px;}
-.step.done{background:rgba(99,102,241,.4);}
+.step.on{background:linear-gradient(90deg,#6366f1,#a855f7);width:52px;}
+.step.done{background:rgba(99,102,241,.45);}
 
 /* CARD */
-.card{margin:10px 12px 0;border-radius:18px;overflow:hidden;background:#13131a;border:1px solid rgba(255,255,255,.07);}
+.card{margin:12px 12px 0;border-radius:20px;overflow:hidden;background:#13131a;border:1px solid rgba(255,255,255,.07);}
 
-/* IMAGE */
-.img-box{position:relative;height:170px;overflow:hidden;}
-.img-box img{width:100%;height:100%;object-fit:cover;display:block;}
-.img-fade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,0) 30%,rgba(10,10,15,.98) 100%);}
-.img-tags{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;}
-.tag{font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.5px;backdrop-filter:blur(6px);}
-.tag-n{background:rgba(10,10,15,.6);color:#94a3b8;border:1px solid rgba(255,255,255,.1);}
-.tag-r{background:rgba(239,68,68,.75);color:#fecaca;}
-.tag-o{background:rgba(249,115,22,.75);color:#fed7aa;}
-.tag-b{background:rgba(99,102,241,.75);color:#c7d2fe;}
-.img-title{position:absolute;bottom:0;left:0;right:0;padding:10px 12px 12px;}
-.img-title h2{font-size:15px;font-weight:800;line-height:1.2;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6);}
+/* IMAGE — taller so it's not cropped */
+.img-box{position:relative;height:280px;overflow:hidden;background:#1a1a2e;}
+.img-box img{width:100%;height:100%;object-fit:contain;object-position:center center;display:block;background:#1a1a2e;}
+.img-fade{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,15,0) 40%,rgba(10,10,15,.97) 100%);}
+.img-tags{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;}
+.tag{font-size:10px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px;backdrop-filter:blur(8px);}
+.tag-n{background:rgba(10,10,15,.65);color:#94a3b8;border:1px solid rgba(255,255,255,.12);}
+.tag-r{background:rgba(239,68,68,.8);color:#fff;}
+.tag-o{background:rgba(249,115,22,.8);color:#fff;}
+.tag-b{background:rgba(99,102,241,.8);color:#fff;}
+.img-title{position:absolute;bottom:0;left:0;right:0;padding:12px 14px 14px;}
+.img-title h2{font-size:16px;font-weight:800;line-height:1.25;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,.7);}
 
 /* SITUATION */
-.sit{margin:10px 12px;padding:10px 12px;background:rgba(99,102,241,.08);border-radius:12px;border-left:3px solid #6366f1;}
-.sit-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#818cf8;margin-bottom:5px;}
-.sit-txt{font-size:12px;color:#94a3b8;line-height:1.6;}
+.sit{margin:12px 12px 0;padding:12px 13px;background:rgba(99,102,241,.09);border-radius:13px;border-left:3px solid #6366f1;}
+.sit-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:#818cf8;margin-bottom:6px;}
+.sit-txt{font-size:13px;color:#94a3b8;line-height:1.65;}
 
 /* OPTIONS */
-.opts-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#374151;padding:8px 12px 5px;}
-.opts{padding:0 12px 12px;display:flex;flex-direction:column;gap:7px;}
-.opt{width:100%;text-align:left;padding:11px 13px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:#e2e8f0;display:flex;align-items:center;gap:10px;transition:all .15s;-webkit-tap-highlight-color:transparent;line-height:1.35;}
+.opts-lbl{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:#374151;padding:10px 12px 6px;}
+.opts{padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;}
+.opt{width:100%;text-align:left;padding:12px 13px;border-radius:13px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03);cursor:pointer;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:#e2e8f0;display:flex;align-items:center;gap:11px;transition:all .15s;-webkit-tap-highlight-color:transparent;line-height:1.4;}
 .opt:active{transform:scale(.97);}
 .opt:hover:not(:disabled){background:rgba(255,255,255,.07);}
 .opt:disabled{cursor:default;transform:none;}
-.ico{width:30px;height:30px;min-width:30px;border-radius:9px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:14px;}
-.opt.ok{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.4);color:#86efac;}
-.opt.ok .ico{background:rgba(34,197,94,.2);}
-.opt.meh{background:rgba(234,179,8,.1);border-color:rgba(234,179,8,.4);color:#fde047;}
-.opt.meh .ico{background:rgba(234,179,8,.2);}
-.opt.no{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.4);color:#fca5a5;}
-.opt.no .ico{background:rgba(239,68,68,.2);}
+.ico{width:32px;height:32px;min-width:32px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.opt.ok{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.45);color:#86efac;}
+.opt.ok .ico{background:rgba(34,197,94,.22);}
+.opt.meh{background:rgba(234,179,8,.1);border-color:rgba(234,179,8,.45);color:#fde047;}
+.opt.meh .ico{background:rgba(234,179,8,.22);}
+.opt.no{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.45);color:#fca5a5;}
+.opt.no .ico{background:rgba(239,68,68,.22);}
 .opt.dim{opacity:.2;}
 
 /* FEEDBACK */
-.fb{display:none;margin:0 12px 10px;padding:11px 13px;border-radius:12px;font-size:12px;font-weight:600;line-height:1.55;}
+.fb{display:none;margin:0 12px 10px;padding:12px 13px;border-radius:13px;font-size:13px;font-weight:600;line-height:1.6;}
 .fb.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);color:#86efac;}
 .fb.meh{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.25);color:#fde047;}
 .fb.no{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);color:#fca5a5;}
 
 /* NEXT */
-.nxt{display:none;margin:0 12px 14px;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;width:calc(100% - 24px);cursor:pointer;letter-spacing:.3px;-webkit-tap-highlight-color:transparent;}
+.nxt{display:none;margin:0 12px 16px;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;width:calc(100% - 24px);cursor:pointer;letter-spacing:.3px;-webkit-tap-highlight-color:transparent;}
 .nxt:active{opacity:.8;}
 
 /* FINAL */
 .fin{display:none;padding:14px 12px;}
-.fin-card{background:#13131a;border-radius:18px;border:1px solid rgba(255,255,255,.07);padding:24px 18px;text-align:center;}
-.fin-em{font-size:52px;margin-bottom:10px;}
-.fin-h{font-size:20px;font-weight:900;color:#f1f5f9;margin-bottom:3px;}
-.fin-s{font-size:12px;color:#4b5563;margin-bottom:16px;}
-.ring{width:100px;height:100px;margin:0 auto 12px;position:relative;}
+.fin-card{background:#13131a;border-radius:20px;border:1px solid rgba(255,255,255,.07);padding:28px 20px;text-align:center;}
+.fin-em{font-size:56px;margin-bottom:12px;}
+.fin-h{font-size:21px;font-weight:900;color:#f1f5f9;margin-bottom:4px;}
+.fin-s{font-size:12px;color:#4b5563;margin-bottom:18px;}
+.ring{width:110px;height:110px;margin:0 auto 14px;position:relative;}
 .ring svg{transform:rotate(-90deg);}
-.ring circle{fill:none;stroke:rgba(255,255,255,.06);stroke-width:8;}
-.ring circle.arc{stroke:url(#g);stroke-width:8;stroke-linecap:round;stroke-dasharray:264;stroke-dashoffset:264;transition:stroke-dashoffset .9s cubic-bezier(.34,1.56,.64,1);}
+.ring circle{fill:none;stroke:rgba(255,255,255,.06);stroke-width:9;}
+.ring circle.arc{stroke:url(#g);stroke-width:9;stroke-linecap:round;stroke-dasharray:264;stroke-dashoffset:264;transition:stroke-dashoffset .9s cubic-bezier(.34,1.56,.64,1);}
 .ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.ring-big{font-size:26px;font-weight:900;color:#f1f5f9;line-height:1;}
-.ring-lbl{font-size:10px;color:#4b5563;font-weight:600;margin-top:2px;}
-.stars{font-size:24px;margin-bottom:10px;letter-spacing:3px;}
-.fin-msg{font-size:13px;color:#6b7280;line-height:1.65;margin-bottom:18px;}
-.rst{width:100%;padding:13px;border-radius:12px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;}
+.ring-big{font-size:28px;font-weight:900;color:#f1f5f9;line-height:1;}
+.ring-lbl{font-size:10px;color:#4b5563;font-weight:600;margin-top:3px;}
+.stars{font-size:26px;margin-bottom:12px;letter-spacing:4px;}
+.fin-msg{font-size:13px;color:#6b7280;line-height:1.7;margin-bottom:20px;}
+.rst{width:100%;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;}
 .rst:active{opacity:.8;}
 
 /* FIRMA */
-.firma{margin:10px 0 20px;text-align:center;padding:14px;background:#13131a;border-radius:18px;border:1px solid rgba(255,255,255,.06);}
-.firma img{height:22px;filter:brightness(0) invert(1);opacity:.4;margin-bottom:6px;}
-.firma p{font-size:11px;color:#374151;line-height:1.8;}
-.firma strong{color:#4b5563;}
+.firma{margin:14px 0 0;text-align:center;padding:18px 14px;background:#13131a;border-radius:20px;border:1px solid rgba(255,255,255,.07);}
+.firma img{height:26px;filter:brightness(0) invert(1);opacity:.45;display:block;margin:0 auto 10px;}
+.firma-linea{width:40px;height:1px;background:rgba(255,255,255,.08);margin:10px auto;}
+.firma p{font-size:12px;color:#374151;line-height:2;}
+.firma .nombre{font-size:13px;font-weight:700;color:#6366f1;letter-spacing:.3px;}
+.firma .cargo{font-size:11px;color:#4b5563;}
+.firma .uni{font-size:11px;color:#4b5563;font-weight:600;}
 </style>
 </head>
 <body>
 <div class="shell">
+
+  <!-- HEADER -->
   <div class="bar">
     <img class="bar-logo" src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
     <span class="bar-pill">SEMANA 1</span>
   </div>
 
+  <!-- DOTS -->
   <div class="steps">
     <div class="step" id="s0"></div>
     <div class="step" id="s1"></div>
     <div class="step" id="s2"></div>
   </div>
 
+  <!-- GAME -->
   <div id="area"></div>
 
+  <!-- FINAL -->
   <div class="fin" id="fin">
     <div class="fin-card">
       <div class="fin-em" id="fem">🎯</div>
       <div class="fin-h">¡Juego completado!</div>
       <div class="fin-s">Alfabetización Digital · Semana 1</div>
       <div class="ring">
-        <svg width="100" height="100" viewBox="0 0 100 100">
+        <svg width="110" height="110" viewBox="0 0 100 100">
           <defs>
             <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#6366f1"/>
@@ -133,42 +141,56 @@ html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;height:10
       <div class="fin-msg" id="fmsg"></div>
       <button class="rst" onclick="restart()">🔄 Intentar de nuevo</button>
     </div>
+
+    <!-- FIRMA FINAL -->
     <div class="firma">
-      <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel"><br>
-      <p><strong>Universidad Utel</strong><br>Docente: Armando Sandoval Maravilla</p>
+      <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
+      <div class="firma-linea"></div>
+      <p>
+        <span class="nombre">Dr. Armando Sandoval Maravilla</span><br>
+        <span class="cargo">Docente · Semana 1</span><br>
+        <span class="uni">Universidad Utel</span>
+      </p>
     </div>
   </div>
+
 </div>
 
 <script>
 const DATA=[
-  {num:"01",tag:"🚨 Estafa",tc:"tag-r",
-   title:"Estafa de Migración a Canadá",
-   img:"https://i.postimg.cc/3RZJD3hG/estafas.jpg",
-   sit:"En redes sociales circula un video viral con el mensaje \u201cEmigrar fácil y rápido a Canadá\u201d con promesas de trabajo garantizado y casa inmediata.",
-   opts:[
-    {i:"📤",t:"Compartir de inmediato con mis contactos",k:"no",f:"❌ Difundir sin verificar ayuda a que más personas caigan en estafas."},
-    {i:"🔍",t:"Verificar en fuentes oficiales (IRCC, Gobierno de Canadá)",k:"ok",f:"✅ ¡Correcto! Verificar fortalece el pensamiento crítico y protege a las personas."},
-    {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable, pero no ideal. No difundes el fraude, pero tampoco ayudas a otros a identificarlo."}
-  ]},
-  {num:"02",tag:"⚖️ Político",tc:"tag-o",
-   title:"Ley Anti-Stickers de Morena",
-   img:"https://i.postimg.cc/FRxsJhvL/morena.jpg",
-   sit:"Se viraliza que un diputado de Morena propone penas de cárcel por crear o difundir memes, stickers o gifs que dañen la reputación de alguien.",
-   opts:[
-    {i:"😂",t:"Compartirlo como burla sin verificar",k:"no",f:"❌ Difundir sin verificar genera desinformación, aunque sea en broma."},
-    {i:"🔍",t:"Investigar si es real en el sitio oficial del Congreso",k:"ok",f:"✅ ¡Correcto! Confirmar antes de opinar o compartir es siempre lo mejor."},
-    {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable, pero pierdes la oportunidad de reflexionar sobre libertad de expresión."}
-  ]},
-  {num:"03",tag:"💡 Viral",tc:"tag-b",
-   title:"Meme sobre Claudia Sheinbaum",
-   img:"https://i.postimg.cc/ZRLKyJm3/luz.jpg",
-   sit:"Circula un meme sobre un supuesto comentario de la presidenta Claudia Sheinbaum sobre apagar luces o usar menos calentador para ahorrar energía.",
-   opts:[
-    {i:"😆",t:"Reír y compartir el meme",k:"no",f:"❌ Compartir memes sin verificar contribuye a la desinformación política."},
-    {i:"🔍",t:"Investigar si realmente lo dijo buscando la declaración completa",k:"ok",f:"✅ ¡Correcto! Verificar fuentes oficiales evita caer en desinformación."},
-    {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable. No lo viralizas, pero tampoco ayudas a otros a distinguir lo verdadero de lo falso."}
-  ]}
+  {
+    num:"01", tag:"🚨 Estafa", tc:"tag-r",
+    title:"Estafa de Migración a Canadá",
+    img:"https://i.postimg.cc/3RZJD3hG/estafas.jpg",
+    sit:"En redes sociales circula un video viral con el mensaje \u201cEmigrar f\u00e1cil y r\u00e1pido a Canad\u00e1\u201d con promesas de trabajo garantizado y casa inmediata.",
+    opts:[
+      {i:"📤",t:"Compartir de inmediato con mis contactos",k:"no",f:"❌ Difundir sin verificar ayuda a que m\u00e1s personas caigan en estafas."},
+      {i:"🔍",t:"Verificar en fuentes oficiales (IRCC, Gobierno de Canad\u00e1)",k:"ok",f:"✅ \u00a1Correcto! Verificar fortalece el pensamiento cr\u00edtico y protege a las personas."},
+      {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable, pero no ideal. No difundes el fraude, pero tampoco ayudas a otros a identificarlo."}
+    ]
+  },
+  {
+    num:"02", tag:"⚖️ Pol\u00edtico", tc:"tag-o",
+    title:"Ley Anti-Stickers de Morena",
+    img:"https://i.postimg.cc/FRxsJhvL/morena.jpg",
+    sit:"Se viraliza que un diputado de Morena propone penas de c\u00e1rcel por crear o difundir memes, stickers o gifs que da\u00f1en la reputaci\u00f3n de alguien.",
+    opts:[
+      {i:"😂",t:"Compartirlo como burla sin verificar",k:"no",f:"❌ Difundir sin verificar genera desinformaci\u00f3n, aunque sea en broma."},
+      {i:"🔍",t:"Investigar si es real en el sitio oficial del Congreso",k:"ok",f:"✅ \u00a1Correcto! Confirmar antes de opinar o compartir es siempre lo mejor."},
+      {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable, pero pierdes la oportunidad de reflexionar sobre libertad de expresi\u00f3n."}
+    ]
+  },
+  {
+    num:"03", tag:"💡 Viral", tc:"tag-b",
+    title:"Meme sobre Claudia Sheinbaum",
+    img:"https://i.postimg.cc/ZRLKyJm3/luz.jpg",
+    sit:"Circula un meme sobre un supuesto comentario de la presidenta Claudia Sheinbaum sobre apagar luces o usar menos calentador para ahorrar energ\u00eda.",
+    opts:[
+      {i:"😆",t:"Re\u00edr y compartir el meme",k:"no",f:"❌ Compartir memes sin verificar contribuye a la desinformaci\u00f3n pol\u00edtica."},
+      {i:"🔍",t:"Investigar si realmente lo dijo buscando la declaraci\u00f3n completa",k:"ok",f:"✅ \u00a1Correcto! Verificar fuentes oficiales evita caer en desinformaci\u00f3n."},
+      {i:"🙈",t:"Ignorarlo",k:"meh",f:"⚠️ Aceptable. No lo viralizas, pero tampoco ayudas a otros a distinguir lo verdadero de lo falso."}
+    ]
+  }
 ];
 
 let cur=0,score=0,answered=false;
@@ -186,8 +208,9 @@ function render(){
   if(cur>=3){showFin();return;}
   answered=false;dots();
   const d=DATA[cur],opts=sfl(d.opts);
-  document.getElementById('area')._opts=opts;
-  document.getElementById('area').innerHTML=`
+  const area=document.getElementById('area');
+  area._opts=opts;
+  area.innerHTML=`
   <div class="card">
     <div class="img-box">
       <img src="${d.img}" alt="${d.title}">
@@ -204,10 +227,16 @@ function render(){
     </div>
     <div class="opts-lbl">👇 ¿Qué harías tú?</div>
     <div class="opts">
-      ${opts.map((o,i)=>`<button class="opt" onclick="pick(${i})" id="o${i}"><span class="ico">${o.i}</span><span>${o.t}</span></button>`).join('')}
+      ${opts.map((o,i)=>`
+        <button class="opt" onclick="pick(${i})" id="o${i}">
+          <span class="ico">${o.i}</span>
+          <span>${o.t}</span>
+        </button>`).join('')}
     </div>
     <div class="fb" id="fb"></div>
-    <button class="nxt" id="nxt" onclick="next()">${cur<2?'Siguiente escenario →':'Ver mis resultados →'}</button>
+    <button class="nxt" id="nxt" onclick="next()">
+      ${cur<2?'Siguiente escenario →':'Ver mis resultados →'}
+    </button>
   </div>`;
 }
 
@@ -223,7 +252,9 @@ function pick(i){
     j===i?b.classList.add(c.k):b.classList.add('dim');
   }
   const fb=document.getElementById('fb');
-  fb.textContent=c.f;fb.className='fb '+c.k;fb.style.display='block';
+  fb.textContent=c.f;
+  fb.className='fb '+c.k;
+  fb.style.display='block';
   document.getElementById('nxt').style.display='block';
 }
 
@@ -232,8 +263,7 @@ function next(){cur++;render();}
 function showFin(){
   document.getElementById('area').innerHTML='';
   document.querySelector('.steps').style.display='none';
-  const fin=document.getElementById('fin');
-  fin.style.display='block';
+  document.getElementById('fin').style.display='block';
   document.getElementById('rnum').textContent=score+'/3';
   document.getElementById('fem').textContent=['😓','🤔','🏆'][score];
   document.getElementById('fstars').textContent=['⭐','⭐⭐','⭐⭐⭐'][score];
