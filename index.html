@@ -53,6 +53,8 @@ html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;}
 .nxt{display:none;margin:0 12px 10px;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;width:calc(100% - 24px);cursor:pointer;letter-spacing:.3px;-webkit-tap-highlight-color:transparent;}
 .nxt:active{opacity:.8;}
 .sc-firma{text-align:center;font-size:10px;color:rgba(255,255,255,.12);padding:4px 12px 14px;font-weight:500;letter-spacing:.4px;}
+
+/* FINAL */
 .fin{display:none;padding:14px 12px;}
 .fin-card{background:#13131a;border-radius:20px;border:1px solid rgba(255,255,255,.07);padding:28px 20px;text-align:center;}
 .fin-em{font-size:56px;margin-bottom:12px;}
@@ -65,17 +67,31 @@ html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;}
 .ring-num{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .ring-big{font-size:28px;font-weight:900;color:#f1f5f9;line-height:1;}
 .ring-lbl{font-size:10px;color:#4b5563;font-weight:600;margin-top:3px;}
-.stars{font-size:26px;margin-bottom:12px;letter-spacing:4px;}
+.stars{font-size:26px;margin-bottom:10px;letter-spacing:4px;}
 .fin-msg{font-size:13px;color:#6b7280;line-height:1.7;margin-bottom:20px;}
-.rst{width:100%;padding:14px;border-radius:13px;border:none;background:linear-gradient(135deg,#6366f1,#a855f7);color:#fff;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;cursor:pointer;}
+
+/* SHARE BUTTONS */
+.share-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#374151;margin-bottom:10px;}
+.share-btns{display:flex;gap:8px;margin-bottom:16px;}
+.share-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:12px 8px;border-radius:13px;border:none;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;-webkit-tap-highlight-color:transparent;transition:opacity .15s;}
+.share-btn:active{opacity:.8;}
+.btn-wa{background:#25D366;color:#fff;}
+.btn-fb{background:#1877F2;color:#fff;}
+.btn-icon{font-size:16px;line-height:1;}
+
+.rst{width:100%;padding:14px;border-radius:13px;border:none;background:rgba(255,255,255,.05);color:#94a3b8;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;cursor:pointer;border:1px solid rgba(255,255,255,.08);}
 .rst:active{opacity:.8;}
-.firma{margin:14px 0 0;text-align:center;padding:18px 14px;background:#13131a;border-radius:20px;border:1px solid rgba(255,255,255,.07);}
-.firma img{height:26px;filter:brightness(0) invert(1);opacity:.45;display:block;margin:0 auto 10px;}
-.firma-linea{width:40px;height:1px;background:rgba(255,255,255,.08);margin:10px auto;}
-.firma p{font-size:12px;color:#374151;line-height:2.1;}
-.firma .nombre{font-size:13px;font-weight:700;color:#6366f1;letter-spacing:.3px;}
-.firma .cargo{font-size:11px;color:#4b5563;}
-.firma .uni{font-size:11px;color:#4b5563;font-weight:600;}
+
+/* FIRMA MEJORADA */
+.firma{margin:14px 0 0;background:#13131a;border-radius:20px;border:1px solid rgba(255,255,255,.07);overflow:hidden;}
+.firma-top{padding:16px 14px 14px;text-align:center;}
+.firma img{height:24px;filter:brightness(0) invert(1);opacity:.4;display:block;margin:0 auto 12px;}
+.firma-div{height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.3),transparent);margin:0 20px;}
+.firma-bottom{padding:14px 14px 16px;text-align:center;}
+.firma-nombre{font-size:14px;font-weight:800;color:#6366f1;letter-spacing:.3px;margin-bottom:2px;}
+.firma-cargo{font-size:11px;color:#374151;margin-bottom:1px;}
+.firma-uni{font-size:11px;color:#374151;font-weight:600;}
+.firma-badge{display:inline-block;margin-top:8px;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(99,102,241,.12);color:#6366f1;border:1px solid rgba(99,102,241,.2);}
 </style>
 </head>
 <body>
@@ -113,16 +129,29 @@ html,body{font-family:'Inter',sans-serif;background:#0a0a0f;color:#fff;}
       </div>
       <div class="stars" id="fstars">⭐</div>
       <div class="fin-msg" id="fmsg"></div>
+      <div class="share-label">📲 Comparte tu resultado</div>
+      <div class="share-btns">
+        <a class="share-btn btn-wa" id="btn-wa" href="#" target="_blank">
+          <span class="btn-icon">💬</span> WhatsApp
+        </a>
+        <a class="share-btn btn-fb" id="btn-fb" href="#" target="_blank">
+          <span class="btn-icon">📘</span> Facebook
+        </a>
+      </div>
       <button class="rst" onclick="restart()">🔄 Intentar de nuevo</button>
     </div>
+
     <div class="firma">
-      <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
-      <div class="firma-linea"></div>
-      <p>
-        <span class="nombre">Dr. Armando Sandoval Maravilla</span><br>
-        <span class="cargo">Docente · Semana 1</span><br>
-        <span class="uni">Universidad Utel</span>
-      </p>
+      <div class="firma-top">
+        <img src="https://i.postimg.cc/FKz4sz2C/logoutelsinfondo.png" alt="Utel">
+      </div>
+      <div class="firma-div"></div>
+      <div class="firma-bottom">
+        <div class="firma-nombre">Dr. Armando Sandoval Maravilla</div>
+        <div class="firma-cargo">Docente de Asignatura</div>
+        <div class="firma-uni">Universidad Utel</div>
+        <span class="firma-badge">Material Didáctico · Semana 1</span>
+      </div>
     </div>
   </div>
 </div>
@@ -177,8 +206,16 @@ function showFin(){
   document.getElementById('rnum').textContent=score+'/3';
   document.getElementById('fem').textContent=['😓','🤔','🏆'][score];
   document.getElementById('fstars').textContent=['⭐','⭐⭐','⭐⭐⭐'][score];
-  document.getElementById('fmsg').textContent=['Sigue practicando. El pensamiento crítico se entrena todos los días. ¡Inténtalo de nuevo!','Vas por buen camino. Siempre verifica antes de compartir cualquier información.','¡Excelente! Eres un ejemplo de ciudadanía digital responsable.'][score];
+  const msgs=['Sigue practicando. El pensamiento crítico se entrena todos los días. ¡Inténtalo de nuevo!','Vas por buen camino. Siempre verifica antes de compartir cualquier información.','¡Excelente! Eres un ejemplo de ciudadanía digital responsable.'];
+  document.getElementById('fmsg').textContent=msgs[score];
   setTimeout(()=>{document.getElementById('arc').style.strokeDashoffset=264-(264*(score/3));},300);
+
+  // Share buttons
+  const pageUrl = encodeURIComponent(window.location.href);
+  const emojis=['😓','🤔','🏆'];
+  const shareMsg=encodeURIComponent(`${emojis[score]} Obtuve ${score}/3 en el juego de Alfabetización Digital de la Universidad Utel - Semana 1. ¿Tú puedes hacerlo mejor? 👇\n${window.location.href}`);
+  document.getElementById('btn-wa').href=`https://wa.me/?text=${shareMsg}`;
+  document.getElementById('btn-fb').href=`https://www.facebook.com/sharer/sharer.php?u=${pageUrl}&quote=${encodeURIComponent(`Obtuve ${score}/3 en el juego de Alfabetización Digital · Universidad Utel`)}`;
 }
 function restart(){
   cur=0;score=0;answered=false;
